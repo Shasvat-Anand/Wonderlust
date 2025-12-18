@@ -1,0 +1,29 @@
+ 
+    <% layout("/Layouts/boilerplate")  %>
+<body>
+
+    <h1>About This Property</h1>
+    <ul>
+        <li><%= list.title %></li>
+        <br>
+        <li><%= list.description %></li>
+        <br>
+         
+        <li> &#8377 <%= list.price.toLocaleString("en-IN") %></li>
+        <br>
+        <li><%= list.location %></li>
+        <br>
+        <li><%= list.country%></li>
+
+        
+        </ul>
+        <form action="/listing/<%= list._id%>/edit">
+            <button type="submit">Edit</button>
+        </form>
+        <br>
+        <form action="/listing/<%=list._id %>/delete?_method=Delete" method="post">
+            <button type="submit">Delete</button>
+        </form>
+    
+</body>
+ 
