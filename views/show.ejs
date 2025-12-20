@@ -1,29 +1,52 @@
- 
-    <% layout("/Layouts/boilerplate")  %>
-<body>
+<% layout("/Layouts/boilerplate") %>
 
-    <h1>About This Property</h1>
-    <ul>
-        <li><%= list.title %></li>
-        <br>
-        <li><%= list.description %></li>
-        <br>
-         
-        <li> &#8377 <%= list.price.toLocaleString("en-IN") %></li>
-        <br>
-        <li><%= list.location %></li>
-        <br>
-        <li><%= list.country%></li>
+    <body>
 
-        
+
+        <div class="row mt-3 d-flex justify-content-center align-item-center">
+            <h3>About This Property</h3>
+            <div class="mb-3 col-6   ">
+                <img src="<%= list.image %>" class="img-fluid rounded-3 " alt="ListImage">
+            </div>
+        </div>
+
+
+        <ul class="list-group shadow-lg rounded-3 mb-3 mt-3">
+            <li class="list-group-item fw-bold fs-5">
+                <%= list.title %>
+            </li>
+
+            <li class="list-group-item text-muted">
+                <%= list.description %>
+            </li>
+
+            <li class="list-group-item text-success fw-semibold">
+                ₹ <%= list.price.toLocaleString("en-IN") %>
+            </li>
+
+            <li class="list-group-item">
+                📍 <%= list.location %>, <%= list.country %>
+            </li>
         </ul>
-        <form action="/listing/<%= list._id%>/edit">
-            <button type="submit">Edit</button>
-        </form>
-        <br>
-        <form action="/listing/<%=list._id %>/delete?_method=Delete" method="post">
-            <button type="submit">Delete</button>
-        </form>
-    
-</body>
- 
+
+        <div class="row mb-3 d-flex justify-content-between align-items-center">
+
+            <form action="/listing/<%= list._id %>/edit" class="col-auto">
+                <button class="btn btn-dark">Edit</button>
+            </form>
+
+            <form action="/listing/<%= list._id %>/delete?_method=DELETE" method="post" class="col-auto">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+
+        </div>
+
+
+        </div>
+
+
+
+
+
+
+    </body>

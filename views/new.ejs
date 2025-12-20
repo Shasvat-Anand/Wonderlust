@@ -3,19 +3,44 @@
 <body>
     <h1>Create new List</h1>
     <form action="/listing" method="post">
-        <input type="text" name="n_title" placeholder="Enter Title">
-        <br><br>
-        <input type="text" name="n_image" placeholder="Enter link/url">
-        <br><br>
-        <textarea name="n_description" rows="10" col="10" placeholder="Description here"></textarea>
-        <br><br>
-        <input type="number" name="n_price" placeholder="Enter Price">
-        <br><br>
-        <input type="text" name="n_location" placeholder="Enter location">
-        <br><br>
-        <input type="text" name="n_country" placeholder="Enter Country">
-        <br><br>
-        <button type="submit">Create New</button>
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="n_title" class="form-control" placeholder="Enter Title">
+           
+        </div>
+
+       
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="n_description"   class="form-control textarea" placeholder="Description here"></textarea>
+        </div>
+         <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="text" name="n_image" class="form-control" placeholder="Enter link/url">
+        </div>
+
+
+        <div class="row">
+
+            <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" name="n_price" class="form-control" placeholder="Enter Price">
+            </div>
+            <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                <label for="location" class="form-label">Location</label>
+                
+                <input type="text" name="n_location"  class="form-control" placeholder="Enter location">
+            </div>
+        </div>
+        
+        <div class="mb-3">
+             <label for="country" class="form-label">Country</label>
+
+             <input type="text" name="n_country" class="form-control" placeholder="Enter Country">
+         </div>
+         
+        <button class="btn btn-dark" type="submit">Create New</button>
     </form>
 </body>
  

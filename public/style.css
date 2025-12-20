@@ -90,3 +90,9 @@ body{
     opacity: 0.2;
     background-color:rgb(255, 255, 255);
 }
+
+/* Edit Form */
+
+.textarea{
+    resize: none;
+}
