@@ -7,12 +7,13 @@
             <h1>Edit your List</h1>
         </div>
 
-        <form action="/listing/<%= data._id%>?_method=PUT" method="post">
+        <form action="/listing/<%= data._id%>?_method=PUT" novalidate class="needs-validation" method="post">
 
 
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" name="title" class="form-control"  value="<%= data.title %>">
+                <div class="valid">Looks Good</div>
             </div>
              <div class="mb-3">
                 <label for="description" class="form-label">Description</label>

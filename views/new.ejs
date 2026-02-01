@@ -2,42 +2,47 @@
     <% layout("/Layouts/boilerplate")  %>
 <body>
     <h1>Create new List</h1>
-    <form action="/listing" method="post">
+    <form action="/listing" method="post"  class="needs-validation" novalidate >
 
         <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" name="n_title" class="form-control" placeholder="Enter Title">
+            <label  for="title" class="form-label">Title</label>
+            <input type="text" id="title" name="n_title" required class="form-control" placeholder="Enter Title">
+            <div class="valid-feedback">Looks Good</div>
            
         </div>
 
        
         <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea name="n_description"   class="form-control textarea" placeholder="Description here"></textarea>
+            <label  for="description" class="form-label">Description</label>
+            <textarea id="Description" name="n_description" required class="form-control textarea" placeholder="Description here"></textarea>
+            <div class="invalid-feedback">Please enter short Description</div>
         </div>
          <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
-            <input type="text" name="n_image" class="form-control" placeholder="Enter link/url">
+            <label for="image"  class="form-label">Image</label>
+            <input type="text" id="Image" name="n_image" class="form-control" placeholder="Enter link/url">
         </div>
 
 
         <div class="row">
 
             <div class="mb-3  col-lg-6 col-md-6 col-sm-12">
-                <label for="price" class="form-label">Price</label>
-                <input type="number" name="n_price" class="form-control" placeholder="Enter Price">
+                <label for="price"  class="form-label">Price</label>
+                <input type="number" id="Price" name="n_price" required class="form-control" placeholder="Enter Price">
+                <div class="invalid-feedback">Please enter Price</div>
             </div>
             <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
                 <label for="location" class="form-label">Location</label>
                 
-                <input type="text" name="n_location"  class="form-control" placeholder="Enter location">
+                <input type="text" id="Location"  name="n_location" required class="form-control" placeholder="Enter location">
+                <div class="invalid-feedback">Please enter Location</div>
             </div>
         </div>
         
         <div class="mb-3">
-             <label for="country" class="form-label">Country</label>
+             <label for="country"   class="form-label">Country</label>
 
-             <input type="text" name="n_country" class="form-control" placeholder="Enter Country">
+             <input type="text" id="Country" name="n_country" required class="form-control" placeholder="Enter Country">
+             <div class="invalid-feedback">Please enter Country</div>
          </div>
          
         <button class="btn btn-dark" type="submit">Create New</button>
