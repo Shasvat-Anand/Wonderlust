@@ -12,34 +12,39 @@
 
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" name="title" class="form-control"  value="<%= data.title %>">
+                <input type="text" name="listing[title]" class="form-control" id="title" required  value="<%= data.title %>">
                 <div class="valid">Looks Good</div>
             </div>
              <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea type="text" name="description" class="form-control textarea" ><%= data.description %></textarea>
+                <textarea type="text" id="description" name="listing[description]" required class="form-control textarea" ><%= data.description %></textarea>
+                <div class="valid">Please Enter short description</div>
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
-                <input type="text" name="image" class="form-control"   value="<%= data.image %>">
+                <input type="text" id="Image" name="listing[image]" class="form-control" required  value="<%= data.image %>">
+                <div class="valid">Please enter image url</div>
             </div>
 
             <div class="row  ">
                                     
                     <div class="mb-3 col-lg-6 col-md-6  col-sm-12">
                         <label for="price" class="form-label">Price</label>
-                        <input type="number" name="price" class="form-control"   value="<%= data.price %>">
+                        <input type="number" name="listing[price]" id="price" class="form-control" required  value="<%= data.price %>">
+                        <div class="valid">Please enter price</div>
                     </div>
                     
                     <div class="mb-3 col-lg-6 col-md-6  col-sm-12">
                         <label for="location" class="form-label">Location</label>
-                        <input type="text" name="location" class="form-control"  value="<%= data.location %>">
+                        <input type="text" name="listing[location]" id="location" class="form-control" required  value="<%= data.location %>">
+                        <div class="valid">Please enter location</div>
                     </div>
                 
             </div>
             <div class="mb-3">
                 <label for="country" class="form-label">Country</label>
-                <input type="text" name="country" class="form-control"  value="<%= data.country %>">
+                <input type="text" name="listing[country]" class="form-control" id="country" required  value="<%= data.country %>">
+                <div class="valid">Please enter country</div>
             </div>
 
 

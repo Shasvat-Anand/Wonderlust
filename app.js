@@ -25,7 +25,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const mongoose = require("mongoose");
 
-const { clearScreenDown } = require("readline");
+ 
+
+
+// Required WrapAsync
+const WrapAsync = require("./util/WrapAsync.js");
+
+//  Required Express Error which handle mongoose error
+const ExpressError = require("./util/ExpressError.js")
+
 
 main().then(()=>{
     console.log("connection successful")
@@ -60,68 +68,93 @@ app.get("/listing/new", (req, res)=>{
 })
 
 // editing the listing
-app.put("/listing/:id", async (req, res)=>{
+app.put("/listing/:id", WrapAsync( async (req, res)=>{
     let {id} = req.params;
  
-    const {title, image, description, price, location, country} = req.body;
+    // const {title, image, description, price, location, country} = req.body;
+    const listing = req.body.listing;
     
 
-    await Listing.findByIdAndUpdate(id,{title, image, description, price, location, country}, {new : true});
+    // await Listing.findByIdAndUpdate(id,{title, image, description, price, location, country}, {new : true});
+    await Listing.findByIdAndUpdate(id, req.body.listing, {new : true});
     res.redirect(`/listing/${id}`)
-})
+}))
 
 //  deleting the list
-app.delete("/listing/:id/delete", async (req, res)=>{
+app.delete("/listing/:id/delete",WrapAsync( async (req, res)=>{
     let{id} = req.params;
     await Listing.findByIdAndDelete(id);
     res.redirect(`/listing`);
-})
+}))
 
 // show listing route 
-app.get("/listing/:id",async (req, res)=>{
+app.get("/listing/:id", WrapAsync(async (req, res)=>{
     let {id} = req.params;
     let list =  await Listing.findById(id);
    
     res.render("show.ejs", {list})
-})
+}))
 
 // create new listing  route 
-app.post("/listing", async (req, res)=>{   
+app.post("/listing", WrapAsync( async (req, res)=>{   
     
-    let {n_title, n_description , n_price , n_image, n_location, n_country} = req.body;
+    // let {n_title, n_description , n_price , n_image, n_location, n_country} = req.body;
 
-    const new_listing = new Listing({
-        title : n_title,
-        description : n_description,
-        price : n_price,
-        image: n_image,
-        location : n_location,
-        country : n_country
+    if(!req.body.listing){
+        throw new ExpressError (404, "Send invalid data for listing")
+    }
+    let newlisting = new Listing(req.body.listing);
 
-    })
+    // const new_listing = new Listing({
+    //     title : n_title,
+    //     description : n_description,
+    //     price : n_price,
+    //     image: n_image,
+    //     location : n_location,
+    //     country : n_country
+
+    // })
    
-    await new_listing.save();
+    await newlisting.save();
     res.redirect("/listing")
-})
+}))
 
 // edit form route
-app.get("/listing/:id/edit",async (req, res)=>{
+app.get("/listing/:id/edit",WrapAsync( async (req, res)=>{
     let {id} = req.params;   
     let data =  await Listing.findById(id);
     res.render("editform.ejs", {data})
 
-})
+}))
 
 
 
 
 //  LIsting route
-app.get("/listing",async (req, res )=>{
+app.get("/listing",WrapAsync( async (req, res )=>{
     const data = await Listing.find({})
      
     
     res.render("listing.ejs", {data})
+}))
+
+
+// handle General Error in from sever side.
+
+app.use((err, req, res ,next)=>{
+    res.send("Something went Wrong");
 })
+
+
+ 
+
+//  handle expresserror class for mongosh error
+app.use((err, req, res, next)=>{
+    let{status = 500, message = "Something went wrong!"} = err;
+    res.status(status).send(message);
+})
+
+
 
 app.listen(3000,()=>{
     console.log("Server is running on port 3000");
